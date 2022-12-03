@@ -1,0 +1,24 @@
+{% extends "base/base.html" %}
+{% block title %}Lista de Proyectos{% endblock %}
+{% block container %}
+    <div class="row">
+        {% for project in object_list %}
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-image">
+                        {% if project.image %}
+                            <img src="{{ project.image.url }}">
+                        {% endif %}
+                        <span class="card-title">{{ project.name }}</span>
+                    </div>
+                    <div class="card-content">
+                        <p>{{ project.description }}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'donations' project.pk %}">Ir al proyecto</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
